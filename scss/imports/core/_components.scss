@@ -1,0 +1,241 @@
+// css img, button, heading, title, input, elements, components...
+img {
+    max-width: 100%;
+    height: auto;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    &.--center {
+        margin: 0 auto;
+        display: block;
+    }
+}
+a {
+    text-decoration: none;
+}
+
+// colors (tuỳ chỉnh)
+.--white-cl {
+    color: $white-cl;
+}
+.--black-cl {
+    color: $black-cl;
+}
+.--blue-cl {
+    color: $blue-cl;
+}
+
+// css article (nội dung chi tiết bài viết)
+article {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: pb; // font bold
+        display: block;
+    }
+    h1 {
+        font-size: var(--h1-fs);
+        line-height: var(--h1-lh);
+        margin: 0 0 0.67rem 0;
+    }
+    h2 {
+        font-size: var(--h2-fs);
+        line-height: var(--h2-lh);
+        margin: 0 0 0.75rem 0;
+    }
+    h3 {
+        font-size: var(--h3-fs);
+        line-height: var(--h3-lh);
+        margin: 0 0 0.83rem 0;
+    }
+    h4 {
+        font-size: var(--h4-fs);
+        line-height: var(--h4-lh);
+        margin: 0 0 1.12rem 0;
+    }
+    h5 {
+        font-size: var(--h5-fs);
+        line-height: var(--h5-lh);
+        margin: 0 0 1.5rem 0;
+    }
+    h6 {
+        font-size: 0.67rem;
+        margin: 0 0 1.67rem 0;
+    }
+
+    p {
+        margin: 0 0 1.12rem 0;
+    }
+    strong {
+        font-family: pb; // font bold
+    }
+    ol,
+    ul {
+        list-style: initial;
+        padding-left: 18px;
+    }
+    img {
+        display: inline-block;
+        height: auto;
+        overflow: hidden;
+        border-radius: 10px;
+        margin: 25px auto;
+    }
+    .video {
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+        position: relative;
+        margin: 25px auto;
+        iframe,
+        video {
+            position: absolute;
+            @include size(100%);
+            top: 0;
+            left: 0;
+        }
+    }
+    @include xs {
+        img {
+            margin: 20px auto;
+        }
+    }
+}
+
+.heading {
+    font-family: pb;
+    &.--h1 {
+        font-size: var(--h1-fs);
+        line-height: var(--h1-lh);
+    }
+    &.--h2 {
+        font-size: var(--h2-fs);
+        line-height: var(--h2-lh);
+    }
+}
+
+// heading h3 chung
+.heading {
+    @include text(40px, pb, 83.3px, 2.8px, $black-hd, uppercase);
+}
+
+// LEARN MORE PRODUCT
+.btn {
+    @include text(14px, pb, 58px, 2.8px, $black-cl, uppercase);
+    display: inline-block;
+    @include transition($t);
+    &::after {
+        @include afterbefore(37px, 2px, $yellow-cl);
+        display: block;
+        margin-top: -20px;
+    }
+    img {
+        @include transform(translateX(0px));
+        @include transition($t);
+    }
+    &:hover {
+        img {
+            @include transform(translateX(20px));
+            @include transition($t);
+        }
+    }
+}
+
+// BUTTON LEARN MORE / WATCH
+.btnmain {
+    max-width: max-content;
+    height: 50px;
+    @include text(14px, pb, 58px, 2.8px, $white-cl, uppercase);
+    border: 1px solid $white-cl;
+    padding: 14px 40px;
+    cursor: pointer;
+    @include transition($t);
+    &:hover {
+        background: $yellow-cl;
+        @include transition($t);
+        i {
+            margin-left: 15px;
+            right: -5px;
+            @include transition($t);
+        }
+    }
+}
+
+// ITEM FURNITURE, ABOUT
+.card {
+    @include midflex;
+    .title {
+        width: 45%;
+        padding-left: 90px;
+        padding-right: 50px;
+        .heading {
+            position: relative;
+            display: inline-block;
+            &::before {
+                @include afterbefore(85px, 2px, $black-cl);
+                display: block;
+                @include translateY;
+            }
+            &.first {
+                    &::before {
+                        left: -90px;
+                    }
+                }
+            .content {
+                @include overtext(3);
+            }
+        }
+    }
+    .img {
+        img {
+            width: 100%;
+        }
+    }
+}
+
+// responsive chung product va about
+@include sm {
+        .card {
+            display: flex;
+            flex-wrap: wrap;
+            .title {
+                width: 100%;
+                padding-left: calc(-1*90px);
+                padding-right: calc(-1*50px);
+                order: 2;
+                .heading {
+                    &::before {
+                        display: none;
+                    }
+                }
+            }
+            .img {
+                order: 1;
+                width: 100%;
+            }
+        }
+    }
+
+@include xs {
+        .card {
+            .title {
+                padding-bottom: var(--pd-res);
+                .heading {
+                    @include headingxs;
+                }
+                .desc {
+                    @include textxs;
+                }
+            }
+        }
+    }    
+
+// TITLE SECTION GALLERY, NEWS
+.titlesc {
+    max-width: 444px;
+}

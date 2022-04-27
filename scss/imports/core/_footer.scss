@@ -1,0 +1,27 @@
+// css footer
+
+footer {
+    background: $black-bg;
+    .container {
+        @include midflex;
+        .copy {
+            @include text(12px, pr, 20.83px, 0.6px, #b0b0b0, none);
+        }
+        .logoft {
+            @include translateX;
+        }
+        .back {
+            @include text(12px, pr, 83.83px, 0.6px, #b0b0b0, uppercase);
+            cursor: pointer;
+        }
+    }
+    @include xs {
+        .container {
+            padding-top: 20px;
+            flex-direction: column;
+            .logoft {
+                margin: 25px auto;
+            }
+        }
+    }
+}

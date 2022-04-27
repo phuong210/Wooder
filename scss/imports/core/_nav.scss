@@ -1,0 +1,61 @@
+// css navigator (Menu)
+
+// MENU
+.nav {
+    @include visible(0);
+    width: 100vw;
+    position: fixed;
+    background: $black-bg;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    @include transform(initial);
+    z-index: 300;
+    @include transition($t);
+    ul {
+        flex-direction: column;
+        @include mid();
+        text-align: center;
+        li {
+            margin: 20px auto;
+            a {
+                text-transform: uppercase;
+                padding: 15px;
+                color: $white-cl;
+                &.active {
+                    color: $yellow-cl;
+                    @include transition($t);
+                }
+            }
+        }
+    }
+    &.active {
+        @include visible(1);
+    }
+}
+
+// SCROLL
+
+.controls {
+    height: 3px;
+    width: 200px;
+    background: #e0dede;
+    border-radius: 10px;
+    position: relative;
+    bottom: 50px;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .progress-bar {
+        width: 20px;
+        height: 100%;
+        background: $yellow-cl;
+        position: absolute;
+        left: 0;
+    }
+    @include xs {
+        width: 100px;
+    }
+}

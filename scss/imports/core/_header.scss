@@ -1,0 +1,193 @@
+// css header
+
+.progress-bar {
+    @include size(0%, 3px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 400;
+    background: $yellow-cl;
+}
+
+.header {
+    height: var(--height-header);
+    width: 100%;
+    position: fixed;
+    @include fullscreen(true);
+    right: 0;
+    z-index: 300;
+
+    &.active {
+        background-color: $black-bg;
+        @include transition($t);
+    }
+    .container-fluid {
+        height: 100%;
+        // position: relative;
+        @include midflex;
+        .logo {
+            a {
+                display: flex;
+                align-items: center;
+            }
+            .hidden {
+                display: none;
+            }
+        }
+        .menu {
+            @include midflex;
+            @include translateX;
+            li {
+                height: 100%;
+                a {
+                    height: 100%;
+                    padding: 0 30px;
+                    @include text(15px, pb, 22.5px, 0.375px, $white-cl, uppercase);
+                    @include transition($t);
+                    overflow: hidden;
+                    &:hover {
+                        color: $yellow-cl;
+                        @include transition($t);
+                    }
+                    &.active {
+                        color: $yellow-cl;
+                        @include transition($t);
+                    }
+                }
+            }
+        }
+        .right {
+            height: 100%;
+            @include midflex;
+            .lang {
+                height: 100%;
+                @include midflex;
+                position: relative;
+                margin-right: 10px;
+                &__current {
+                    @include midflex;
+                    cursor: pointer;
+                    @include text(16px, pb, 22.5px, 0.8px, $white-cl, uppercase);
+                    i {
+                        @include midflex;
+                        margin-left: 8px;
+                         img {
+                            display: block;
+                            align-items: center;
+                        }
+                    }
+                    &:hover {
+                        color: $yellow-cl;
+                    }
+                    &.active {
+                        color: $yellow-cl;
+                    }
+                }
+                &__option {
+                    display: none;
+                    @include size(auto, auto);
+                    position: absolute;
+                    padding: 20px;
+                    background: rgba(0, 0, 0, 0.6);
+                    top: 60px;
+                    right: 0px;
+                    text-align: center;
+                    @include transition($t);
+                    li {
+                        @include text(16px, pb, 22.5px, 0.8px, $white-cl, uppercase);
+                        @include transition($t);
+                        &:hover {
+                            cursor: pointer;
+                            color: $yellow-cl;
+                        }
+                    }
+                    &.active {
+                        display: block;
+                    }
+                }
+            }
+            .btnmenu {
+                display: none;
+                @include size(16px);
+                position: relative;
+                left: 1px;
+                cursor: pointer;
+                overflow: hidden;
+                span {
+                    display: block;
+                    height: 2px;
+                    width: 100%;
+                    background: $yellow-cl;
+                    position: relative;
+                    @include transition($t);
+                    &::before,
+                    &::after {
+                        @include afterbefore(100%, 2px, $yellow-cl);
+                        top: 5px;
+                        display: block;
+                    }
+                    &::before {
+                        transform: translateY(0px);
+                    }
+                    &::after {
+                        transform: translateY(5px);
+                    }
+                    
+                }
+                &.active {
+                    span {
+                        height: 0;
+                        &::after {
+                            @include transform(rotate(45deg));
+                        }
+                
+                        &::before {
+                            @include transform(rotate(-45deg));
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+
+    
+    @include sm {
+        .container-fluid {
+            width: 100%;
+            .logo {
+                img {
+                    width: 100px;
+                    height: 12px;
+                }
+            }
+            .menu {
+                li {
+                    height: 100%;
+                    a {
+                        height: 100%;
+                        padding: 0 10px;
+                    }
+                }
+            }
+        }
+    }
+    @include xs {
+        background-color: black;
+        --height-header: 60px;
+        .container-fluid {
+            .menu {
+                display: none;
+            }
+            .right {
+                .btnmenu {
+                    display: block;
+                }
+            }
+            .nav {
+                display: block;
+                
+            }
+        }    
+    }
+}
